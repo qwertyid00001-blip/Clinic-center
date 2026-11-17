@@ -1,0 +1,40 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #F8FAFC;
+  color: #1E293B;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.nav-item-active {
+  background-color: #38729D;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px -2px rgba(56, 114, 157, 0.35);
+}
+
+.nav-item-active svg {
+  color: #FFFFFF;
+}
+
+.teal-kpi-card {
+  background: linear-gradient(135deg, #00A5AE 0%, #008B94 100%);
+}

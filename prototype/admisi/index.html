@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admisi &amp; Front Office — Klinik Pratama Cahaya Medika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../shared/styles.css" />
+</head>
+<body class="min-h-screen antialiased selection:bg-brand-teal/20 selection:text-brand-tealDark">
+
+  <div class="flex min-h-screen p-3 md:p-5 gap-4 md:gap-6 max-w-[1600px] mx-auto">
+
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/30 backdrop-blur-xs z-40 hidden lg:hidden" onclick="toggleSidebar(false)"></div>
+
+    <aside id="sidebar" class="fixed lg:sticky top-3 md:top-5 left-3 z-50 lg:z-auto w-[255px] shrink-0 h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2.5rem)] bg-white rounded-[26px] border border-slate-200/80 shadow-card flex flex-col justify-between p-4 transition-transform duration-200 -translate-x-[120%] lg:translate-x-0">
+      <div class="flex flex-col min-h-0">
+        <div class="flex items-center gap-2.5 px-2 pt-1 pb-5">
+          <div class="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center shrink-0 shadow-sm relative">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M10 3h4a1 1 0 0 1 1 1v5h5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-5v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-5H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h5V4a1 1 0 0 1 1-1z"/></svg>
+            <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-amber-400 border-2 border-white"></span>
+          </div>
+          <div class="leading-tight">
+            <p class="text-[9px] font-semibold tracking-wider text-slate-400 uppercase">Klinik Pratama</p>
+            <p class="text-[13px] font-bold text-brand-blue tracking-tight">CAHAYA</p>
+            <p class="text-[11px] font-semibold text-brand-teal -mt-0.5">MEDIKA</p>
+          </div>
+        </div>
+        <nav id="sidebar-nav" class="space-y-1 overflow-y-auto pr-1 flex-1"></nav>
+      </div>
+
+      <div class="pt-3 mt-3 border-t border-slate-100">
+        <div class="flex items-center justify-between px-2 py-1.5 rounded-xl hover:bg-slate-50 transition">
+          <div class="min-w-0">
+            <p class="text-[13px] font-medium text-slate-700 truncate">Dokter Herman S.Pd</p>
+            <p class="text-[10px] text-slate-400">Shift Pagi • 07:00–14:00</p>
+          </div>
+          <button onclick="showToast('Sesi dikunci. Silakan Clock-Out jika shift berakhir.', 'info')" title="Keluar / Kunci Sesi" class="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" /></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col min-w-0">
+      <header class="flex flex-wrap items-center justify-between gap-4 pb-5 pt-1">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleSidebar(true)" class="lg:hidden p-2 rounded-xl bg-white border border-slate-200 shadow-xs text-slate-600 hover:bg-slate-50">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+          </button>
+          <div>
+            <h1 id="page-title" class="text-[22px] md:text-[24px] font-semibold text-slate-800 leading-tight tracking-tight">Admisi &amp; Front Office</h1>
+            <p id="page-subtitle" class="text-[13px] font-normal text-slate-400">Registrasi NIK, Antrean Multi-Channel, &amp; ADT Rawat Inap</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 md:gap-4 ml-auto">
+          <button onclick="openCommandModal()" class="flex items-center justify-between gap-6 px-4 py-2.5 bg-white rounded-full border border-slate-200/80 shadow-pill hover:border-brand-teal/50 transition min-w-[180px] sm:min-w-[230px] text-left group">
+            <span class="text-[12px] font-medium text-slate-400 group-hover:text-slate-600 tracking-wide">CTRL + K</span>
+            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+          </button>
+
+          <div class="flex items-center gap-2.5 pl-1">
+            <div class="w-10 h-10 rounded-full bg-slate-200 border border-slate-300/70 flex items-center justify-center text-slate-600 font-semibold text-sm">HS</div>
+            <div class="hidden sm:block leading-tight">
+              <p class="text-[13px] font-semibold text-slate-800">Herman S.Pd</p>
+              <p class="text-[11px] font-normal text-slate-400">Manager</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content" class="flex-1 min-w-0"></main>
+    </div>
+  </div>
+
+  <!-- CTRL + K MODAL -->
+  <div id="cmd-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-50 hidden items-start justify-center pt-20 px-4" onclick="if(event.target===this) closeCommandModal()">
+    <div class="bg-white w-full max-w-lg rounded-3xl border border-slate-200 shadow-2xl overflow-hidden">
+      <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-100">
+        <svg class="w-5 h-5 text-brand-teal" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+        <input id="cmd-input" type="text" placeholder="Cari pasien (RM/NIK), modul, atau aksi cepat..." class="w-full text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none" oninput="filterCommandList(this.value)" />
+        <button onclick="closeCommandModal()" class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded-lg">ESC</button>
+      </div>
+      <div id="cmd-results" class="max-h-72 overflow-y-auto p-2 space-y-1 text-xs"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 max-w-sm pl-3.5 pr-3 py-2.5 rounded-xl bg-white border border-slate-200 border-l-4 border-l-brand-teal text-slate-700 text-xs shadow-lg transition-all">
+    <span id="toast-icon" class="shrink-0 text-brand-teal"></span>
+    <span id="toast-msg" class="leading-snug font-medium">Aksi berhasil</span>
+    <button onclick="hideToast()" class="ml-1 p-1 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition shrink-0" aria-label="Tutup">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+    </button>
+  </div>
+
+  <script>window.APP_BASE = '../';</script>
+  <script src="../shared/layout.js"></script>
+  <script src="./admisi.js"></script>
+</body>
+</html>
